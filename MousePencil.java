@@ -31,8 +31,7 @@ public class MousePencil implements MouseMotionListener {
 	public void erase() {
 		isDrawing = false;
 	}
-	//Here's how updates will likely go down. When mouse clicked, it starts building a new array of points to be sent up to the editor.
-	//The editor gets the list, puts everything into a string, and signals the tread that it is ready to hand over an update string.
+	
 	
 	public void mouseDragged(MouseEvent e) {
 		DrawToCanvas point;
