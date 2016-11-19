@@ -12,7 +12,8 @@ public class DrawingEditor extends JFrame {
 	private Canvas view;
 	String Update;
 	private JButton clear, drawErase, red, blue, green, black, white, yellow, floodfill;
-		
+	private CountDownTimer timer;
+	
 	public DrawingEditor(boolean drawer) {
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,6 +24,7 @@ public class DrawingEditor extends JFrame {
 		if(drawer == true){
 			pen = new MousePencil(view, this);
 			addViewByLabel();
+			addTimer();
 		}
 		
 		this.add(view, BorderLayout.CENTER);
@@ -146,6 +148,11 @@ public class DrawingEditor extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			pen.c = Color.YELLOW;
 		}		
+	}
+	
+	private void addTimer(){
+		timer = new CountDownTimer();
+		view.add(timer, BorderLayout.NORTH);
 	}
 	
 	
