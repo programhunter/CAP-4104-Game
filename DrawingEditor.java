@@ -2,10 +2,12 @@ package drawer;
 
 import gamescreens.Team;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 
 @SuppressWarnings("serial")
@@ -13,7 +15,7 @@ public class DrawingEditor extends JFrame {
 	private MousePencil pen;
 	private Canvas view;
 	String Update;
-	private JButton clear, drawErase, red, blue, green, black, white, yellow, floodfill;
+	private JButton clear, drawErase, red, blue, green, black, yellow, floodfill;
 	
 	private CountDownTimer timer;
 	private Team[] teams;
@@ -99,15 +101,20 @@ public class DrawingEditor extends JFrame {
 		green.addActionListener(new changeColorGreen());
 		dataPanel.add(green);
 		
-		white = new JButton (" ");
-		white.setBackground(Color.WHITE);
-		white.addActionListener(new changeColorWhite());
-		dataPanel.add(white);
-		
 		yellow = new JButton (" ");
 		yellow.setBackground(Color.YELLOW);
 		yellow.addActionListener(new changeColorYellow());
 		dataPanel.add(yellow);
+		
+
+		floodfill = new JButton(" ");
+		try{
+			Image img = ImageIO.read(getClass().getResource("/images/bucket.png"));
+			floodfill.setIcon(new ImageIcon(img));
+		}catch (IOException ex) {}
+		//floodfill.setBounds(0,0,100,100);
+		floodfill.addActionListener(new Floodfill());
+		dataPanel.add(floodfill);
 		
 		
 			
@@ -136,6 +143,13 @@ public class DrawingEditor extends JFrame {
 		}		
 	}
 	
+	private class Floodfill implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}		
+	}
+	
 	private class changeColorRed implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -154,13 +168,6 @@ public class DrawingEditor extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			pen.c = Color.GREEN;
-		}		
-	}
-	
-	private class changeColorWhite implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			pen.c = Color.WHITE;
 		}		
 	}
 	
