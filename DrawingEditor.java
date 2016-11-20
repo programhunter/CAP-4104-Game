@@ -1,5 +1,7 @@
 package drawer;
 
+import gamescreens.Team;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -12,13 +14,31 @@ public class DrawingEditor extends JFrame {
 	private Canvas view;
 	String Update;
 	private JButton clear, drawErase, red, blue, green, black, white, yellow, floodfill;
+	
 	private CountDownTimer timer;
+	private Team[] teams;
+	int numberTeams = 2;	
 	
 	public DrawingEditor(boolean drawer) {
-		setSize(700, 700);
+		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.setLayout(new BorderLayout());
+		
+		//Creates JPanel to collect each teams scores panel
+		JPanel allTeamScoreBoards = new JPanel();		
+		allTeamScoreBoards.setLayout(new BoxLayout(allTeamScoreBoards, BoxLayout.Y_AXIS));
+		allTeamScoreBoards.setBorder(BorderFactory.createTitledBorder("Team Scores"));
+		
+		//Change this once the DrawingEditor is implemented into Launcher
+		//Needs to receive total number of teams from launcher
+		//Adds each teams scoreLabel to allScoreBoards
+		teams = new Team[2];
+		for(int i = 1; i <= 2; i++){
+			teams[i - 1] = new Team(i);
+			teams[i - 1].getScoreBoard().setMaximumSize(new Dimension(210, 85));
+			allTeamScoreBoards.add(teams[i - 1].getScoreBoard());
+		}
 		
 		view = new Canvas();
 		if(drawer == true){
@@ -28,6 +48,7 @@ public class DrawingEditor extends JFrame {
 		}
 		
 		this.add(view, BorderLayout.CENTER);
+		this.add(allTeamScoreBoards, BorderLayout.EAST);
 		
 	}
 		
