@@ -1,4 +1,4 @@
-package gamescreens;
+package drawer;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -278,6 +278,7 @@ public class Launcher implements ActionListener {
 		next6.addActionListener(
 			new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					DrawingEditor.main(null);
 					CardLayout c1 = (CardLayout)(cards.getLayout());
 					c1.next(cards);
 				}
