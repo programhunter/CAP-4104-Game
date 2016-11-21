@@ -22,7 +22,7 @@ public class DrawingEditor extends JFrame {
 	int numberTeams = 2;	
 	
 	public DrawingEditor(boolean drawer) {
-		setSize(800, 800);
+		setSize(700, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.setLayout(new BorderLayout());
