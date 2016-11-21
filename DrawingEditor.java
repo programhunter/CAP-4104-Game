@@ -31,7 +31,7 @@ public class DrawingEditor extends JFrame {
 		toSubmit.setLayout(new BoxLayout(toSubmit, BoxLayout.LINE_AXIS));
 		toSubmit.setBorder(BorderFactory.createTitledBorder("What's your guess?"));
 		
-		JTextField submit = new JTextField("test");
+		JTextField submit = new JTextField(" ");
 	    submit.setBounds(new Rectangle(400, 350, 100, 20));
 	    toSubmit.add(submit);
 		
