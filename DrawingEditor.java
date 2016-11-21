@@ -15,7 +15,7 @@ public class DrawingEditor extends JFrame {
 	private MousePencil pen;
 	private Canvas view;
 	String Update;
-	private JButton clear, drawErase, red, blue, green, black, yellow, floodfill;
+	private JButton clear, drawErase, red, blue, green, black, yellow, floodfill, submit;
 	
 	private CountDownTimer timer;
 	private Team[] teams;
@@ -26,6 +26,15 @@ public class DrawingEditor extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.setLayout(new BorderLayout());
+		
+		JPanel toSubmit = new JPanel();
+		toSubmit.setLayout(new BoxLayout(toSubmit, BoxLayout.LINE_AXIS));
+		toSubmit.setBorder(BorderFactory.createTitledBorder("What's your guess?"));
+		
+		JTextField submit = new JTextField("test");
+	    submit.setBounds(new Rectangle(400, 350, 100, 20));
+	    toSubmit.add(submit);
+		
 		
 		//Creates JPanel to collect each teams scores panel
 		JPanel allTeamScoreBoards = new JPanel();		
@@ -51,6 +60,7 @@ public class DrawingEditor extends JFrame {
 		
 		this.add(view, BorderLayout.CENTER);
 		this.add(allTeamScoreBoards, BorderLayout.EAST);
+		this.add(toSubmit, BorderLayout.SOUTH);
 		
 	}
 		
@@ -67,6 +77,10 @@ public class DrawingEditor extends JFrame {
 			drawErase.setText("Erase");
 		}
 	}
+	
+	
+		
+	
 	
 	private void addViewByLabel() {
 
