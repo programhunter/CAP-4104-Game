@@ -19,7 +19,7 @@ public class DrawingEditor extends JFrame {
 	
 	private CountDownTimer timer;
 	private Team[] teams;
-	int numberTeams = 2;	
+	public static int numberTeams = 2;	
 	
 	public DrawingEditor(boolean drawer) {
 		setSize(700, 600);
@@ -44,8 +44,8 @@ public class DrawingEditor extends JFrame {
 		//Change this once the DrawingEditor is implemented into Launcher
 		//Needs to receive total number of teams from launcher
 		//Adds each teams scoreLabel to allScoreBoards
-		teams = new Team[2];
-		for(int i = 1; i <= 2; i++){
+		teams = new Team[numberTeams];
+		for(int i = 1; i <= numberTeams; i++){
 			teams[i - 1] = new Team(i);
 			teams[i - 1].getScoreBoard().setMaximumSize(new Dimension(210, 85));
 			allTeamScoreBoards.add(teams[i - 1].getScoreBoard());
