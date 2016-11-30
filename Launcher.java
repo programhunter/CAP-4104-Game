@@ -126,6 +126,7 @@ public class Launcher implements ActionListener {
 					public void actionPerformed(ActionEvent e) {
 						JComboBox cb = (JComboBox)e.getSource();
 						teams = cb.getSelectedIndex()+2;
+						DrawingEditor.numberTeams = Integer.parseInt((String)cb.getSelectedItem());
 					}
 				}
 			);
