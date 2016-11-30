@@ -13,10 +13,18 @@ public class Launcher implements ActionListener {
 	int teammates;
 	int turn = 1;
 	int topicNum;
+	int to_draw;
 	String[] teamNums = {"2","3","4"};
 	String[] teammateNums = {"2","3","4","5"};
 	String[] topics = {"Person/Place/Animal", "Object", "Action", "Difficult Words", "Free Choice"};
+	String[][] draw_topic = new String [][] {
+		{"Dog", "Cat", "Tiger", "Elephant", "Las Vegas", "Chick-fil-A"},
+		{"Rubik's Cube", "Airplane", "Lamp", "Water Bottle", "Watch", "Camera"}, 
+		{"Skateboarding", "Bowling", "Surfing", "Dancing", "Driving", "Running"}, 
+		{"Password", "Chaos", "Newsletter", "Jazz", "Neighborhood", "Vegetarian"}, 
+	};
 	String topic;
+	String the_word;
 	
 	public void addComponentToPane(Container pane) {
 		
@@ -260,9 +268,12 @@ public class Launcher implements ActionListener {
 		
 		JPanel screen5 = new JPanel(new BorderLayout());
 		Random topicPick = new Random();
-		topicNum = topicPick.nextInt(5)+1;
+		topicNum = topicPick.nextInt(5);
 		topic = topics[topicNum];
-		JLabel drawingTopic = new JLabel("<html><div style='text-align: center;'>You will be drawing:<br>" + topic + "<br><br>After you click Next, announce it to your team.</html>", SwingConstants.CENTER);
+		Random draw = new Random();
+		to_draw = draw.nextInt(6);
+		
+		JLabel drawingTopic = new JLabel("<html><div style='text-align: center;'>Your category will be:<br>" + topic + "<br><br>After you click Next, you will be given a word to draw</html>", SwingConstants.CENTER);
 		drawingTopic.setFont(new Font("Arial", Font.PLAIN, 20));
 		screen5.add(drawingTopic, BorderLayout.CENTER);
 		JButton back6 = new JButton("Back");
@@ -279,13 +290,45 @@ public class Launcher implements ActionListener {
 		next6.addActionListener(
 			new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					DrawingEditor.main(null);
+					//DrawingEditor.main(null);
 					CardLayout c1 = (CardLayout)(cards.getLayout());
 					c1.next(cards);
 				}
 			}
 		);
 		screen5.add(next6, BorderLayout.EAST);
+		
+		//----------------------------------------------------
+		JPanel screen6 = new JPanel(new BorderLayout());
+		the_word = draw_topic[topicNum][to_draw];
+		JLabel word_to_draw = new JLabel("<html><div style ='text-align: center;'>You will be drawing:<br>" + the_word + "<br><br>Once you click Next, the timer will begin</html>", SwingConstants.CENTER);
+		word_to_draw.setFont(new Font("Arial", Font.PLAIN, 20));
+		screen6.add(word_to_draw, BorderLayout.CENTER);
+		
+		JButton back7 = new JButton("Back");
+		back7.addActionListener(
+			new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					CardLayout c1 = (CardLayout)(cards.getLayout());
+					c1.previous(cards);
+				}
+			}
+		);
+		screen6.add(back7, BorderLayout.WEST);
+		JButton next7 = new JButton("Next");
+		
+		next7.addActionListener(
+			new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DrawingEditor.main(null);
+					CardLayout c1 = (CardLayout)(cards.getLayout());
+					c1.next(cards);
+				}
+			}
+		);
+		screen6.add(next7, BorderLayout.EAST);
+		
+		//----------------------------------------------------
 		
 		cards = new JPanel(new CardLayout());
 		cards.add(masterMenuPane, "MainMenu");
@@ -296,6 +339,7 @@ public class Launcher implements ActionListener {
 		cards.add(screen3, "screen3");
 		cards.add(screen4, "screen4");
 		cards.add(screen5, "screen5");
+		cards.add(screen6, "screen6");
 		
 		pane.add(cards, BorderLayout.CENTER);
 	}
